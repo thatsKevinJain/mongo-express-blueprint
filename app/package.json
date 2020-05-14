@@ -1,0 +1,12 @@
+{
+  "name": "my-express-app",
+  "version": "1.0.0",
+  "description": "Test Express App",
+  "main": "app.js",
+  "author": "",
+  "dependencies": {
+    "ajv": "^6.10.2",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.2"
+  }
+}
