@@ -8,6 +8,10 @@ const port = process.env.PORT || 3000
 
 app.use(express.json())
 
+// CORS //
+const cors = require('./middleware/cors')
+app.use(cors)
+
 // This middleware will attach a mongodb instance to req object //
 app.use(require('./middleware/mongoMiddleware'))
 

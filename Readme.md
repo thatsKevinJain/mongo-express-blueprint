@@ -7,6 +7,7 @@ It provides the following features -
 - Dynamic API routing (Modify API routes easily)
 - Inbuilt validation using AJV (Define all schemas at one place)
 - Easy code maintenance with controller architecture
+- Inbuilt CORS support
 
 You can setup using the following command - 
 ```

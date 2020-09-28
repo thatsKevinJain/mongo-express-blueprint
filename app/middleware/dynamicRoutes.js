@@ -15,7 +15,10 @@ module.exports = function(app){
 
 			// Add dynamic routes //
 			allowedMethods.forEach(allowedMethod => {
-				app[allowedMethod](route, validation, actionCall)
+				if(allowedMethod === "get")
+					app[allowedMethod](route, actionCall)
+				else
+					app[allowedMethod](route, validation, actionCall)
 			})
 		}
 	}
