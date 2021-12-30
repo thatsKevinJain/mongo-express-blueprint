@@ -53,4 +53,4 @@ var mongo = {
 	}
 }
 
-module.exports = mongo
+module.exports = mongo.getDb();

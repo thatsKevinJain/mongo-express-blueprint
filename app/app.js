@@ -1,30 +1,36 @@
-// Connect to DB //
+// Configure DotEnv //
+require('dotenv').config()
+
+const express = require('express')
+const bodyParser = require('body-parser')
 const mongo = require('./driver/mongoDriver')
+const cors = require('./middleware/cors')
+const createIndex = require('./driver/createIndex')
 
 // Create a server //
-const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 
-app.use(express.json())
-
 // CORS //
-const cors = require('./middleware/cors')
 app.use(cors)
 
-// This middleware will attach a mongodb instance to req object //
-app.use(require('./middleware/mongoMiddleware'))
-
+// Request/Response handlers //
+app.use(express.json())
+app.use(bodyParser.json())
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
 
 // Add all routes //
 require('./middleware/dynamicRoutes')(app)
 
-mongo.getDb()
-.then((db) => {
+mongo
+.then(db => {
+	return createIndex(db)
+})
+.then(() => {
 	app.listen(port, () => console.log(`App listening on port ${port}!`))
 })
-.catch((err) => {
+.catch(err => {
 	console.log(`Error connecting to MongoDb`)
+	console.log(err)
 })
