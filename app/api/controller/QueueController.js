@@ -3,7 +3,7 @@ const TEST = 'test'
 
 module.exports = {
 
-	fetch: function(req, res){
+	find: function(req, res){
 
 		req.db.collection(TEST).find({}).toArray()
 		.then((data) => {
@@ -21,7 +21,7 @@ module.exports = {
 		.catch(console.log)
 	},
 
-	add: function(req, res){
+	create: function(req, res){
 		
 		req.db.collection(TEST).insertOne(req.body)
 		.then((data) => {
